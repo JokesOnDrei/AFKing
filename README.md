@@ -1,13 +1,13 @@
 # AFKing
 
 AFKing is a tiny Python script that keeps your screen and status active by wiggling your mouse every few seconds!<br>
-Perfect for anyone who does "Working From Bali" — or maybe just away from their desk<br><br>
+Perfect for anyone who does "Work From Bali" — or maybe just away from their desk<br><br>
 Press Esc three times to make it stop… or when your boss walks by 👀
 
 ## 🛠️ What It Does
 - Random mouse movement across your screen
 - Stops safely with triple `Esc` press
-- Cross-platform compatible (tested on macOS)
+- Cross-platform compatible (tested on macOS & Windows)
 
 ## 📦 What It Needs
 - `Python 3`
