@@ -40,7 +40,7 @@ cd AFKing
 # 2. Run the script
 python3 away.py
 ```
-🟢 Once it’s running, your mouse will move on its own to keep your status/scree active.
+🟢 Once it’s running, your mouse will move on its own to keep your status/screen active.
 <br>
 ⛔️ To stop the script, just press the `Esc` key three times.
 
