@@ -28,7 +28,7 @@ def move_mouse_randomly():
         x = random.randint(10, screen_width - 10)
         y = random.randint(10, screen_height - 10)
         pyautogui.moveTo(x, y, duration=1)
-        time.sleep(5)  # delay 5 seconds between each move
+        time.sleep(3)  # delay 3 seconds between each move
 
 if __name__ == '__main__':
     # Start listening to the keyboard
