@@ -24,10 +24,21 @@ def on_press(key):
         pass
 
 def move_mouse_randomly():
+    move_count = 0
+
     while not stop_event.is_set():
         x = random.randint(10, screen_width - 10)
         y = random.randint(10, screen_height - 10)
         pyautogui.moveTo(x, y, duration=1)
+        move_count += 1
+
+        # Every 3rd move: press and release Shift key
+        if move_count % 3 == 0:
+            print("Performing Shift key press")
+            pyautogui.keyDown('shift')
+            time.sleep(0.1)  # hold it briefly
+            pyautogui.keyUp('shift')
+
         time.sleep(3)  # delay 3 seconds between each move
 
 if __name__ == '__main__':
