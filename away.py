@@ -23,29 +23,64 @@ def on_press(key):
     except:
         pass
 
-def move_mouse_randomly():
-    move_count = 0
+# def move_mouse_randomly():
+#     move_count = 0
+#
+#     while not stop_event.is_set():
+#         x = random.randint(10, screen_width - 10)
+#         y = random.randint(10, screen_height - 10)
+#         pyautogui.moveTo(x, y, duration=1)
+#         move_count += 1
+#
+#         # Every 3rd move: press and release Shift key
+#         if move_count % 3 == 0:
+#             print("Performing Shift key press")
+#             pyautogui.keyDown('shift')
+#             time.sleep(0.1)  # hold it briefly
+#             pyautogui.keyUp('shift')
+#
+#         time.sleep(3)  # delay 3 seconds between each move
 
-    while not stop_event.is_set():
+def perform_action():
+    # Weighted choice: 60% move, 20% keypress, 20% click
+    action = random.choices(
+        ["move", "keypress", "click"],
+        weights=[60, 20, 20],
+        k=1
+    )[0]
+
+    if action == "move":
+        # Move mouse randomly
         x = random.randint(10, screen_width - 10)
         y = random.randint(10, screen_height - 10)
-        pyautogui.moveTo(x, y, duration=1)
-        move_count += 1
+        pyautogui.moveTo(x, y, duration=0.2)
+        print("Mouse moved")
 
-        # Every 3rd move: press and release Shift key
-        if move_count % 3 == 0:
-            print("Performing Shift key press")
-            pyautogui.keyDown('shift')
-            time.sleep(0.1)  # hold it briefly
-            pyautogui.keyUp('shift')
+    elif action == "keypress":
+        # Press Shift
+        pyautogui.keyDown('shift')
+        time.sleep(0.2)  # hold it briefly
+        pyautogui.keyUp('shift')
+        print("Shift pressed")
 
-        time.sleep(3)  # delay 3 seconds between each move
+    elif action == "click":
+        # Click at specific coordinates
+        x, y = 1000, 500   # Adjust to safe coordinates
+        pyautogui.moveTo(x, y, duration=0.2)
+        time.sleep(0.2)
+        pyautogui.click(x, y)
+        print(f"Clicked at {x}, {y}")
 
 if __name__ == '__main__':
     # Start listening to the keyboard
     listener = keyboard.Listener(on_press=on_press)
     listener.start()
 
-    print("Mouse will now move randomly. Press 'Esc' 3 times to stop.")
-    move_mouse_randomly()
+    print("Mouse will now move randomly. Press 'Esc' 3+ times simultaneously to stop.\n")
+
+    # move_mouse_randomly()
+    while not stop_event.is_set():
+        perform_action()
+        time.sleep(3)  # delay 5 seconds between each move
+
     print("Script stopped.")
