@@ -18,6 +18,8 @@ echo Building AFKing.exe...
 pyinstaller --noconfirm --onefile --windowed ^
     --name AFKing ^
     --icon afking.ico ^
+    --version-file version.txt ^
+    --noupx ^
     --hidden-import pystray._win32 ^
     afking.py
 if errorlevel 1 goto :error
